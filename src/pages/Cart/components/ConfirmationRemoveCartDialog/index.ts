@@ -1,0 +1,3 @@
+import ConfirmationRemoveCartDialog from './ConfirmationRemoveCartDialog'
+
+export default ConfirmationRemoveCartDialog
