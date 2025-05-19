@@ -1,4 +1,4 @@
-# Decathlon-Clone
+# Decathlon Clone
 A responsive e-commerce user interface replicating the core functionalities of the Decathlon website. Focused on frontend architecture, UI performance, and user experience optimization.
 
 ## Functions:
