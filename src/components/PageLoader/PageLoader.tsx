@@ -8,7 +8,7 @@ export default function PageLoader() {
   return (
     <>
       {fetchingExceptPurchases > 0 && (
-        <div className='fixed inset-0 bg-black/20 flex justify-center items-center z-1000 overflow-hidden'>
+        <div className='fixed inset-0 bg-black/10 flex justify-center items-center z-1000 overflow-hidden'>
           <span className='loading loading-spinner text-blue'></span>
         </div>
       )}

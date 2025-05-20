@@ -1,4 +1,4 @@
-import { useIsFetching, useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { produce } from 'immer'
 import keyBy from 'lodash/keyBy'
 import throttle from 'lodash/throttle'
@@ -16,23 +16,16 @@ import { AppContext } from 'src/context/app.context'
 import { PurchaseListStatus } from 'src/types/purchase.type'
 import { formatCurrency, generateNameId } from 'src/utils/utils'
 
-import PageLoader from '../../components/PageLoader'
 import ConfirmationRemoveCartDialog from './components/ConfirmationRemoveCartDialog'
 import ConfirmationRemovePurchaseDialog from './components/ConfirmationRemovePurchaseDialog'
 
 export default function Cart() {
   const { extendedPurchase, setExtendedPurchase } = useContext(AppContext)
-  const {
-    data: purchasesCartPendingData,
-    isPending,
-    refetch
-  } = useQuery({
+  const { data: purchasesCartPendingData, refetch } = useQuery({
     queryKey: ['purchases', { status: purchaseStatus.cartPending }],
     queryFn: () => purchaseApi.getPurchase({ status: purchaseStatus.cartPending as PurchaseListStatus }),
     staleTime: 3 * 60 * 1000
   })
-  const isFetching = useIsFetching({ queryKey: ['purchases'] })
-  console.log(isFetching)
 
   const updatePurchaseMutation = useMutation({
     mutationFn: purchaseApi.updatePurchase,
@@ -375,7 +368,6 @@ export default function Cart() {
           </div>
         </div>
       </div>
-      {isPending && <PageLoader />}
     </>
   )
 }
