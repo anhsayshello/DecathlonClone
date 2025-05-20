@@ -1,9 +1,9 @@
-import { useContext } from 'react'
+import { memo, useContext } from 'react'
 import { AppContext } from 'src/context/app.context'
 
 import CollapsibleFooter from './components/CollapsibleFooter'
 
-export default function Footer() {
+export default memo(function Footer() {
   const { viewport } = useContext(AppContext)
   return (
     <footer>
@@ -373,4 +373,4 @@ export default function Footer() {
       )}
     </footer>
   )
-}
+})

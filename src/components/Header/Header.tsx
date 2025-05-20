@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useContext, useEffect } from 'react'
+import { memo, useContext, useEffect } from 'react'
 import purchaseApi from 'src/api/purchase.api'
 import { purchaseStatus } from 'src/constants/purchase'
 import { AppContext } from 'src/context/app.context'
@@ -8,7 +8,7 @@ import { PurchaseListStatus } from 'src/types/purchase.type'
 import DesktopHeader from './components/DesktopHeader'
 import MobileTabletHeader from './components/MobileTabletHeader'
 
-export default function Header() {
+export default memo(function Header() {
   const { viewport } = useContext(AppContext)
   const { isAuthenticated, profile, handleLogout } = useContext(AppContext)
   const { data: dataPurchasesCartPending } = useQuery({
@@ -39,4 +39,4 @@ export default function Header() {
       )}
     </header>
   )
-}
+})

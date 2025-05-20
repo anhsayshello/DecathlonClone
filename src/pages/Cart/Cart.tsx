@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useIsFetching, useMutation, useQuery } from '@tanstack/react-query'
 import { produce } from 'immer'
 import keyBy from 'lodash/keyBy'
 import throttle from 'lodash/throttle'
@@ -31,6 +31,8 @@ export default function Cart() {
     queryFn: () => purchaseApi.getPurchase({ status: purchaseStatus.cartPending as PurchaseListStatus }),
     staleTime: 3 * 60 * 1000
   })
+  const isFetching = useIsFetching({ queryKey: ['purchases'] })
+  console.log(isFetching)
 
   const updatePurchaseMutation = useMutation({
     mutationFn: purchaseApi.updatePurchase,

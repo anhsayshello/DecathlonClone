@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useContext } from 'react'
-import { preload } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
 import authApi from 'src/api/auth.api'
@@ -38,7 +37,6 @@ export default function Login() {
         setIsAuthenticated(true)
         setProfile(data.data.data.user)
         setChatHistory([{ hideInChat: true, role: 'model', text: ChatbotInfo }])
-        preload('src/assets/images/cap.png', { as: 'image' })
         navigate('/')
       },
       onError: (error) => {
