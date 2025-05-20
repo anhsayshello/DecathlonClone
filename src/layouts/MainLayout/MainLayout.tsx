@@ -4,11 +4,13 @@ import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
 
 export default function MainLayout() {
-  const isFetching = useIsFetching()
+  const totalFetching = useIsFetching()
+  const fetchingPurchases = useIsFetching()
+  const fetchingExceptPurchases = totalFetching - fetchingPurchases
   return (
     <>
       <Header />
-      {isFetching > 0 && (
+      {fetchingExceptPurchases > 0 && (
         <div className='pt-19 lg:pt-22 px-5 lg:px-10'>
           <div className='skeleton h-screen w-full rounded-sm'></div>
         </div>
