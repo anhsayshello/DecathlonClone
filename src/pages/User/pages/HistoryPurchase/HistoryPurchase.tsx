@@ -143,7 +143,7 @@ export default function HisrotyPurchase() {
             })}
         </div>
         {isPending && (
-          <div className='w-full mt-30 flex items-center justify-center'>
+          <div className='w-full mt-40 md:mt-30 flex items-center justify-center'>
             <Spinner />
           </div>
         )}

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useContext, useEffect } from 'react'
+import { lazy, useContext, useEffect } from 'react'
 import { Navigate, Outlet, useLocation, useRoutes } from 'react-router'
 import path from 'src/constants/path'
 
@@ -34,6 +34,7 @@ export default function useRouteElements() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
+
   const element = useRoutes([
     {
       path: '',
@@ -42,38 +43,22 @@ export default function useRouteElements() {
         {
           index: true,
           path: path.home,
-          element: (
-            <Suspense>
-              <ProductList />
-            </Suspense>
-          )
+          element: <ProductList />
         },
         {
           path: path.productDetail,
-          element: (
-            <Suspense>
-              <ProductDetail />
-            </Suspense>
-          )
+          element: <ProductDetail />
         },
         {
           path: path.productSearch,
-          element: (
-            <Suspense>
-              <ProductSearch />
-            </Suspense>
-          )
+          element: <ProductSearch />
         }
       ]
     },
 
     {
       path: '*',
-      element: (
-        <Suspense>
-          <NotFound />
-        </Suspense>
-      )
+      element: <NotFound />
     },
     {
       path: '',
@@ -85,11 +70,7 @@ export default function useRouteElements() {
           children: [
             {
               path: path.cart,
-              element: (
-                <Suspense>
-                  <Cart />
-                </Suspense>
-              )
+              element: <Cart />
             },
             {
               path: path.user,
@@ -97,35 +78,19 @@ export default function useRouteElements() {
               children: [
                 {
                   index: true,
-                  element: (
-                    <Suspense>
-                      <User />
-                    </Suspense>
-                  )
+                  element: <User />
                 },
                 {
                   path: path.profile,
-                  element: (
-                    <Suspense>
-                      <Profile />
-                    </Suspense>
-                  )
+                  element: <Profile />
                 },
                 {
                   path: path.historyPurchase,
-                  element: (
-                    <Suspense>
-                      <HistoryPurchase />
-                    </Suspense>
-                  )
+                  element: <HistoryPurchase />
                 },
                 {
                   path: path.updatePassword,
-                  element: (
-                    <Suspense>
-                      <UpdatePassword />
-                    </Suspense>
-                  )
+                  element: <UpdatePassword />
                 }
               ]
             }
@@ -143,19 +108,11 @@ export default function useRouteElements() {
           children: [
             {
               path: path.login,
-              element: (
-                <Suspense>
-                  <Login />
-                </Suspense>
-              )
+              element: <Login />
             },
             {
               path: path.register,
-              element: (
-                <Suspense>
-                  <Register />
-                </Suspense>
-              )
+              element: <Register />
             }
           ]
         }

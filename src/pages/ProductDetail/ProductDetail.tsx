@@ -248,7 +248,7 @@ export default function ProductDetail() {
         <div className='py-7 px-[10px] md:px-6 lg:px-[15px]'>
           <div className='py-5 px-4 md:px-6 bg-white'>
             <div className='mb-1 text-xl font-bold'>Mô tả</div>
-            <div className='mt-3 pb-3 text-sm leading-loose'>
+            <div className='mt-3 pb-3 text-sm leading-loose wrap-break-word'>
               <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(productDetail.description) }} />
             </div>
           </div>
