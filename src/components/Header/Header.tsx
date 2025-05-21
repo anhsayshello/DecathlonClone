@@ -20,7 +20,6 @@ export default function Header() {
   const purchasesCartPending = dataPurchasesCartPending?.data.data
   const totalPurchases =
     purchasesCartPending && purchasesCartPending.reduce((total, purchase) => total + purchase.buy_count, 0)
-  console.log('re-render')
 
   return (
     <header>
