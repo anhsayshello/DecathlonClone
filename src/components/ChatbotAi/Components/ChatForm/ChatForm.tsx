@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
-
-import { ChatHistory } from '../../ChatbotAi'
+import { ChatHistory } from 'src/stores/useChatHistoryStore'
 
 interface Props {
   isOpen: boolean

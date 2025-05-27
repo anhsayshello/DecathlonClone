@@ -1,7 +1,9 @@
 import { Popover } from '@base-ui-components/react/popover'
 import { useState } from 'react'
 import { Link } from 'react-router'
+import AlerDialog from 'src/components/AlerDialog'
 import path from 'src/constants/path'
+import useLogout from 'src/hooks/useLogout'
 import useSearchProduct from 'src/hooks/useSearchProduct'
 import { User } from 'src/types/user.type'
 
@@ -9,10 +11,11 @@ interface Props {
   totalPurchases: number
   isAuthenticated: boolean
   profile: User | null
-  handleLogout: () => void
 }
-export default function DesktopHeader({ totalPurchases, isAuthenticated, profile, handleLogout }: Props) {
+export default function DesktopHeader({ totalPurchases, isAuthenticated, profile }: Props) {
   const { register, handleSearcher } = useSearchProduct()
+  const handleLogout = useLogout()
+
   const [open, setOpen] = useState(false)
   return (
     <div id='desktopHeader'>
@@ -175,30 +178,60 @@ export default function DesktopHeader({ totalPurchases, isAuthenticated, profile
               </svg>
               <div className='text-[10px] capitalize'>hỗ trợ</div>
             </div>
-            <Link to={path.cart} className='min-w-[65px] flex flex-col items-center gap-1.5 relative'>
-              <svg
-                viewBox='0 0 24 24'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-                width='20'
-                height='20'
-                strokeWidth='1.5'
-                aria-hidden='true'
-              >
-                <path
-                  d='M8.20002 8.49999C8.20002 4.99999 9.90002 2.79999 12 2.79999C14.1 2.79999 15.8 5.09999 15.8 8.49999M5.00002 20.5C5.10002 21 5.50002 21.3 6.00002 21.3H18C18.5 21.3 18.9 21 19 20.5L21.1 10.8H2.90002L5.00002 20.5Z'
-                  stroke='currentColor'
-                ></path>
-              </svg>
-              {isAuthenticated ? (
-                <div className='w-[13px] h-[13px] text-[8px] bg-blue flex items-center justify-center text-white rounded-full absolute bottom-[13px] right-4.5'>
-                  {totalPurchases}
-                </div>
-              ) : (
-                ''
-              )}
-              <div className='text-[10px] capitalize'>giỏ hàng</div>
-            </Link>
+            {isAuthenticated && (
+              <Link to={path.cart} className='min-w-[65px] flex flex-col items-center gap-1.5 relative'>
+                <svg
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='20'
+                  height='20'
+                  strokeWidth='1.5'
+                  aria-hidden='true'
+                >
+                  <path
+                    d='M8.20002 8.49999C8.20002 4.99999 9.90002 2.79999 12 2.79999C14.1 2.79999 15.8 5.09999 15.8 8.49999M5.00002 20.5C5.10002 21 5.50002 21.3 6.00002 21.3H18C18.5 21.3 18.9 21 19 20.5L21.1 10.8H2.90002L5.00002 20.5Z'
+                    stroke='currentColor'
+                  ></path>
+                </svg>
+                {isAuthenticated ? (
+                  <div className='w-[13px] h-[13px] text-[8px] bg-blue flex items-center justify-center text-white rounded-full absolute bottom-[13px] right-4.5'>
+                    {totalPurchases}
+                  </div>
+                ) : (
+                  ''
+                )}
+                <div className='text-[10px] capitalize'>giỏ hàng</div>
+              </Link>
+            )}
+            {!isAuthenticated && (
+              <AlerDialog
+                title='Xem giỏ hàng?'
+                trigger={
+                  <button
+                    aria-label='xem giỏ hàng'
+                    className='min-w-[65px] cursor-pointer flex flex-col items-center gap-1.5 relative'
+                  >
+                    <svg
+                      viewBox='0 0 24 24'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='20'
+                      height='20'
+                      strokeWidth='1.5'
+                      aria-hidden='true'
+                    >
+                      <path
+                        d='M8.20002 8.49999C8.20002 4.99999 9.90002 2.79999 12 2.79999C14.1 2.79999 15.8 5.09999 15.8 8.49999M5.00002 20.5C5.10002 21 5.50002 21.3 6.00002 21.3H18C18.5 21.3 18.9 21 19 20.5L21.1 10.8H2.90002L5.00002 20.5Z'
+                        stroke='currentColor'
+                      ></path>
+                    </svg>
+                    <div className='text-[10px] capitalize'>giỏ hàng</div>
+                  </button>
+                }
+                pathName={path.login}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
+import { ChatHistory } from 'src/stores/useChatHistoryStore'
 
-import { ChatHistory } from '../../ChatbotAi'
 import ChatbotIcon from '../ChatbotIcon'
 
 interface Props {

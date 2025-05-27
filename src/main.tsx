@@ -6,7 +6,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import App from 'src/App.tsx'
-import { AppProvider } from 'src/context/app.context.tsx'
 
 import ErrorBoundary from './components/ErrorBoundary'
 
@@ -23,11 +22,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <AppProvider>
-          <ErrorBoundary>
-            <App />
-          </ErrorBoundary>
-        </AppProvider>
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </BrowserRouter>

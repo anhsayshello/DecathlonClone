@@ -1,6 +1,6 @@
-import { useContext } from 'react'
 import path from 'src/constants/path'
-import { AppContext } from 'src/context/app.context'
+import useLogout from 'src/hooks/useLogout'
+import { useProfileStore } from 'src/stores/useProfileStore'
 import { getURLAvatar } from 'src/utils/utils'
 
 import HistoryPurchase from '../../pages/HistoryPurchase'
@@ -9,7 +9,8 @@ import UpdatePassword from '../../pages/UpdatePassword'
 import FloatingElement from '../FloatingElement'
 
 export default function UserSideNav() {
-  const { profile, handleLogout } = useContext(AppContext)
+  const { profile } = useProfileStore((state) => state)
+  const handleLogout = useLogout()
   return (
     <div className='bg-[#f5f4f5]'>
       <div className='flex flex-col h-full justify-between'>

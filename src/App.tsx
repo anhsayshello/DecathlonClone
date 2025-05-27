@@ -1,6 +1,6 @@
 import 'src/index.css'
 
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { ToastContainer } from 'react-toastify'
 
@@ -8,14 +8,15 @@ import ChabotAi from './components/ChatbotAi'
 import PageLoader from './components/PageLoader'
 import Popup from './components/Popup'
 import TimeOut from './components/TimeOut'
-import { AppContext } from './context/app.context'
+import useReset from './hooks/useReset'
+import { useAuthenticatedStore } from './stores/useAuthenticatedStore'
 import useRouteElements from './useRouteElements'
 import { localStorageEventTarget } from './utils/auth'
 
 function App() {
   const element = useRouteElements()
-  const { reset } = useContext(AppContext)
-  const { isAuthenticated } = useContext(AppContext)
+  const reset = useReset()
+  const { isAuthenticated } = useAuthenticatedStore((state) => state)
 
   useEffect(() => {
     localStorageEventTarget.addEventListener('clearLS', reset)

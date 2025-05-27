@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import userApi from 'src/api/user.api'
@@ -9,7 +9,7 @@ import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import InputFile from 'src/components/InputFile'
 import Metadata from 'src/components/Metadata'
-import { AppContext } from 'src/context/app.context'
+import { useProfileStore } from 'src/stores/useProfileStore'
 import { ErrorResponse } from 'src/types/utils.type'
 import { setProfileToLS } from 'src/utils/auth'
 import { ProfileSchema, profileSchema } from 'src/utils/schema'
@@ -67,7 +67,7 @@ export default function Profile() {
   }, [profile, setValue])
 
   const avatar = watch('avatar')
-  const { setProfile } = useContext(AppContext)
+  const { setProfile } = useProfileStore((state) => state)
   const handleUpdateProfile = async (data: ProfileSchema) => {
     let avatarName = avatar
     try {

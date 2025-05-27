@@ -1,4 +1,4 @@
-import { ChatHistory } from 'src/components/ChatbotAi/ChatbotAi'
+import { ChatHistory } from 'src/stores/useChatHistoryStore'
 import { User } from 'src/types/user.type'
 
 export const setAccessTokenToLS = (access_token: string) => localStorage.setItem('access_token', access_token)

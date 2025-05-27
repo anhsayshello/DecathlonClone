@@ -1,6 +1,5 @@
-import { useContext } from 'react'
 import Carousel from 'src/components/Carousel'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
 
 const carouselImages = {
   mobileTablet: [
@@ -22,7 +21,7 @@ const carouselImages = {
 }
 
 export default function CarouselBanner() {
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   const images = !viewport.desktop ? carouselImages.mobileTablet : carouselImages.desktop
 
   return (

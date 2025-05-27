@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
 import authApi from 'src/api/auth.api'
@@ -9,13 +8,16 @@ import { ChatbotInfo } from 'src/components/ChatbotAi/Components/ChatbotInfo/Cha
 import Input from 'src/components/Input'
 import Metadata from 'src/components/Metadata'
 import path from 'src/constants/path'
-import { AppContext } from 'src/context/app.context'
+import { useAuthenticatedStore } from 'src/stores/useAuthenticatedStore'
+import { useChatHistoryStore } from 'src/stores/useChatHistoryStore'
+import { useProfileStore } from 'src/stores/useProfileStore'
 import { ErrorResponse } from 'src/types/utils.type'
 import { RegisterSchema, registerSchema } from 'src/utils/schema'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
 export default function Register() {
-  const { setChatHistory, setIsAuthenticated, setProfile } = useContext(AppContext)
+  const { setChatHistory } = useChatHistoryStore((state) => state)
+  const { setProfile } = useProfileStore((state) => state)
   const {
     register,
     handleSubmit,
@@ -34,7 +36,7 @@ export default function Register() {
   const onSubmit = (data: RegisterSchema) => {
     registerMutation.mutate(data, {
       onSuccess: (data) => {
-        setIsAuthenticated(true)
+        useAuthenticatedStore.setState({ isAuthenticated: true })
         setProfile(data.data.data.user)
         setChatHistory([{ hideInChat: true, role: 'model', text: ChatbotInfo }])
         navigate('/')

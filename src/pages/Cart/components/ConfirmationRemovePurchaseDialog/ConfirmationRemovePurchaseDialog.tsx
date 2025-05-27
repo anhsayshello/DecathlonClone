@@ -1,9 +1,8 @@
 import { Dialog } from '@base-ui-components/react/dialog'
-import { useContext } from 'react'
 import AlerDialog from 'src/components/AlerDialog'
 import BasePopover from 'src/components/BasePopover'
 import Button from 'src/components/Button'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
 import { Purchase } from 'src/types/purchase.type'
 import { formatCurrency } from 'src/utils/utils'
 
@@ -14,7 +13,7 @@ interface Props {
 }
 
 export default function ConfirmationRemovePurchaseDialog({ isPending, purchase, handleDelete }: Props) {
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   return (
     <>
       {!viewport.tablet && (

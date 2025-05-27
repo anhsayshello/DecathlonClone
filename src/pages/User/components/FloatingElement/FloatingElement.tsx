@@ -1,9 +1,9 @@
 import { FloatingOverlay, FloatingPortal, useClick, useFloating, useInteractions } from '@floating-ui/react'
 import classNames from 'classnames'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router'
 import path from 'src/constants/path'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
 
 interface Props {
   trigger: React.ReactElement
@@ -13,7 +13,7 @@ interface Props {
 
 export default function FloatingElement({ trigger, popup, pathName }: Props) {
   const navigate = useNavigate()
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   const [isOpen, setIsOpen] = useState(false)
 
   const { refs, floatingStyles, context } = useFloating({

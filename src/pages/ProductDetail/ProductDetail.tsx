@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import classNames from 'classnames'
 import DOMPurify from 'dompurify'
-import { useContext, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import productApi from 'src/api/product.api'
 import purchaseApi from 'src/api/purchase.api'
@@ -14,7 +14,8 @@ import QuantityField from 'src/components/QuantityField'
 import ScrollButton from 'src/components/ScrollButton'
 import path from 'src/constants/path'
 import { purchaseStatus } from 'src/constants/purchase'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
+import { useAuthenticatedStore } from 'src/stores/useAuthenticatedStore'
 import { ProductQueryParams } from 'src/types/product.type'
 import { formatCurrency, getIdFromNameId } from 'src/utils/utils'
 
@@ -24,7 +25,8 @@ export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1)
   const [isExpanded, setIsExpanded] = useState(false)
   const [purchaseId, setPurchaseId] = useState('')
-  const { isAuthenticated, viewport } = useContext(AppContext)
+  const viewport = useViewport()
+  const { isAuthenticated } = useAuthenticatedStore((state) => state)
   const scrollRef = useRef<HTMLDivElement>(null)
   const queryClient = useQueryClient()
 

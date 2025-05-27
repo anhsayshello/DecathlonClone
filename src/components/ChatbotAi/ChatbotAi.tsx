@@ -2,27 +2,22 @@ import { autoUpdate, flip, offset, shift, useClick, useFloating, useInteractions
 import { FloatingPortal } from '@floating-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { AnimatePresence, motion, useDragControls } from 'motion/react'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import chatbotApi from 'src/api/chatbot.api'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
+import { ChatHistory, useChatHistoryStore } from 'src/stores/useChatHistoryStore'
 import { setChatHistoryToLS } from 'src/utils/auth'
 
 import ChatbotIcon from './Components/ChatbotIcon'
 import ChatForm from './Components/ChatForm'
 import ChatMessage from './Components/ChatMessage'
 
-export interface ChatHistory {
-  hideInChat?: boolean
-  role: string
-  text: string
-}
-
 export default function ChatbotAi() {
   const controls = useDragControls()
   const constraintsRef = useRef(null)
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   const [isOpen, setIsOpen] = useState(false)
-  const { chatHistory, setChatHistory } = useContext(AppContext)
+  const { chatHistory, setChatHistory } = useChatHistoryStore((state) => state)
 
   useEffect(() => {
     setChatHistoryToLS(chatHistory)

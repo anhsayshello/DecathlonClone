@@ -5,7 +5,7 @@ import { FloatingOverlay, FloatingPortal, useClick, useFloating, useInteractions
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import classNames from 'classnames'
 import omit from 'lodash/omit'
-import { useContext, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { createSearchParams, useNavigate } from 'react-router'
 import categoryApi from 'src/api/category.api'
 import productApi from 'src/api/product.api'
@@ -14,8 +14,8 @@ import Button from 'src/components/Button'
 import Metadata from 'src/components/Metadata'
 import ProductCard from 'src/components/ProductCard'
 import path from 'src/constants/path'
-import { AppContext } from 'src/context/app.context'
 import useQueryConfig from 'src/hooks/useQueryConfig'
+import useViewport from 'src/hooks/useViewport'
 import { ProductQueryParams } from 'src/types/product.type'
 
 import CategoryFilter from './components/CategoryFilter'
@@ -25,7 +25,7 @@ import RatingStars from './components/RatingStars'
 
 export default function ProductSearch() {
   const [isOpen, setIsOpen] = useState(false)
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   const [loadMore, setLoadMore] = useState(10)
   const anchorRef = useRef(null)
   const containerWidthRef = useRef<HTMLDivElement | null>(null)

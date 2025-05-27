@@ -1,10 +1,9 @@
-import { useContext } from 'react'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
 
 import CollapsibleFooter from './components/CollapsibleFooter'
 
 export default function Footer() {
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   return (
     <footer>
       {!viewport.desktop && (

@@ -1,9 +1,8 @@
 import { Dialog } from '@base-ui-components/react/dialog'
-import { useContext } from 'react'
 import AlerDialog from 'src/components/AlerDialog'
 import BasePopover from 'src/components/BasePopover'
 import Button from 'src/components/Button'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
 
 interface Props {
   isPending: boolean
@@ -12,7 +11,7 @@ interface Props {
 }
 
 export default function ConfirmationRemoveCartDialog({ isPending, totalPurchases, handleDeleteAll }: Props) {
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   return (
     <>
       {!viewport.tablet && (

@@ -1,10 +1,10 @@
-import { lazy, useContext, useEffect } from 'react'
+import { lazy, useEffect } from 'react'
 import { Navigate, Outlet, useLocation, useRoutes } from 'react-router'
 import path from 'src/constants/path'
 
-import { AppContext } from './context/app.context'
 import AuthLayout from './layouts/AuthLayout'
 import MainLayout from './layouts/MainLayout/MainLayout'
+import { useAuthenticatedStore } from './stores/useAuthenticatedStore'
 
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
@@ -20,11 +20,11 @@ const UpdatePassword = lazy(() => import('./pages/User/pages/UpdatePassword'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function ProtectedRoute() {
-  const { isAuthenticated } = useContext(AppContext)
+  const { isAuthenticated } = useAuthenticatedStore((state) => state)
   return isAuthenticated ? <Outlet /> : <Navigate to={path.login} />
 }
 function RejectedRoute() {
-  const { isAuthenticated } = useContext(AppContext)
+  const { isAuthenticated } = useAuthenticatedStore((state) => state)
   return !isAuthenticated ? <Outlet /> : <Navigate to={path.home} />
 }
 

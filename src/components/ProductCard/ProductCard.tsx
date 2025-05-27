@@ -1,7 +1,6 @@
-import { useContext } from 'react'
 import { Link } from 'react-router'
 import path from 'src/constants/path'
-import { AppContext } from 'src/context/app.context'
+import { useAuthenticatedStore } from 'src/stores/useAuthenticatedStore'
 import { Product } from 'src/types/product.type'
 import { formatCurrency, generateNameId } from 'src/utils/utils'
 
@@ -13,7 +12,7 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
-  const { isAuthenticated } = useContext(AppContext)
+  const { isAuthenticated } = useAuthenticatedStore((state) => state)
   return (
     <div className='w-[185px] lg:w-[237px] flex flex-col shrink-0 pb-3'>
       <div className='relative'>

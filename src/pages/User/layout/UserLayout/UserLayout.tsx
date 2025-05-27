@@ -1,13 +1,12 @@
-import { useContext } from 'react'
 import { Outlet } from 'react-router'
 import Metadata from 'src/components/Metadata'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
 
 import UserSideNav from '../../components/UserSideNav'
 import User from '../../User'
 
 export default function UserLayout() {
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   return (
     <>
       <Metadata title='Tài khoản' content='Quản lý thông tin cá nhân và các hoạt động mua sắm.' />

@@ -1,8 +1,7 @@
-import { useContext } from 'react'
-import { AppContext } from 'src/context/app.context'
+import useViewport from 'src/hooks/useViewport'
 
 export default function User() {
-  const { viewport } = useContext(AppContext)
+  const viewport = useViewport()
   return (
     <>
       {viewport.tablet && (

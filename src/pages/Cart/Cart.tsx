@@ -3,7 +3,7 @@ import { produce } from 'immer'
 import keyBy from 'lodash/keyBy'
 import throttle from 'lodash/throttle'
 import { motion } from 'motion/react'
-import { useContext, useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Link, useLocation } from 'react-router'
 import { toast } from 'react-toastify'
 import purchaseApi from 'src/api/purchase.api'
@@ -12,7 +12,7 @@ import Metadata from 'src/components/Metadata'
 import QuantityField from 'src/components/QuantityField'
 import path from 'src/constants/path'
 import { purchaseStatus } from 'src/constants/purchase'
-import { AppContext } from 'src/context/app.context'
+import { useExtendedPurchaseStore } from 'src/stores/useExtendedPurchaseStore'
 import { PurchaseListStatus } from 'src/types/purchase.type'
 import { formatCurrency, generateNameId } from 'src/utils/utils'
 
@@ -20,7 +20,8 @@ import ConfirmationRemoveCartDialog from './components/ConfirmationRemoveCartDia
 import ConfirmationRemovePurchaseDialog from './components/ConfirmationRemovePurchaseDialog'
 
 export default function Cart() {
-  const { extendedPurchase, setExtendedPurchase } = useContext(AppContext)
+  // const { extendedPurchase, setExtendedPurchase } = useCaontext(AppContext)
+  const { extendedPurchase, setExtendedPurchase } = useExtendedPurchaseStore((state) => state)
   const { data: purchasesCartPendingData, refetch } = useQuery({
     queryKey: ['purchases', { status: purchaseStatus.cartPending }],
     queryFn: () => purchaseApi.getPurchase({ status: purchaseStatus.cartPending as PurchaseListStatus }),
