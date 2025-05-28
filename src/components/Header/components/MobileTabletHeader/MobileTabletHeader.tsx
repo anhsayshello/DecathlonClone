@@ -3,7 +3,7 @@ import { FloatingOverlay, FloatingPortal, useClick, useFloating, useInteractions
 import { motion } from 'motion/react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import AlerDialog from 'src/components/AlerDialog'
+import AlerDialog from 'src/components/AlertDialog'
 import path from 'src/constants/path'
 import useSearchProduct from 'src/hooks/useSearchProduct'
 

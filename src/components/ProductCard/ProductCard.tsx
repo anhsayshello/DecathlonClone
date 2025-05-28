@@ -4,7 +4,7 @@ import { useAuthenticatedStore } from 'src/stores/useAuthenticatedStore'
 import { Product } from 'src/types/product.type'
 import { formatCurrency, generateNameId } from 'src/utils/utils'
 
-import Dialog from '../AlerDialog'
+import Dialog from '../AlertDialog'
 import PopoverCart from './components/PopoverCart/PopoverCart'
 
 interface Props {

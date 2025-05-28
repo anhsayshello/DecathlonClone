@@ -1,5 +1,5 @@
 import { Dialog } from '@base-ui-components/react/dialog'
-import AlerDialog from 'src/components/AlerDialog'
+import AlerDialog from 'src/components/AlertDialog'
 import BasePopover from 'src/components/BasePopover'
 import Button from 'src/components/Button'
 import useViewport from 'src/hooks/useViewport'

@@ -1,7 +1,7 @@
 import { Popover } from '@base-ui-components/react/popover'
 import { useState } from 'react'
 import { Link } from 'react-router'
-import AlerDialog from 'src/components/AlerDialog'
+import AlerDialog from 'src/components/AlertDialog'
 import path from 'src/constants/path'
 import useLogout from 'src/hooks/useLogout'
 import useSearchProduct from 'src/hooks/useSearchProduct'
