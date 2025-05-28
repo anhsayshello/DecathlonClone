@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 interface Props {
   scrollRef: React.RefObject<HTMLDivElement>
@@ -7,35 +7,65 @@ interface Props {
 }
 
 export default function ScrollButton({ scrollRef, direction }: Props) {
-  const [canScroll, setCanScroll] = useState(true)
+  const [canScroll, setCanScroll] = useState(false)
+
+  const checkScroll = useCallback(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    if (container.scrollWidth <= container.clientWidth) {
+      setCanScroll(false)
+      return
+    }
+
+    if (direction === 'left') {
+      setCanScroll(container.scrollLeft > 0)
+    } else {
+      setCanScroll(container.scrollLeft + container.clientWidth < container.scrollWidth)
+    }
+  }, [scrollRef, direction])
 
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
 
-    const checkScroll = () => {
-      if (direction === 'left') {
-        setCanScroll(container.scrollLeft > 0)
-      } else {
-        setCanScroll(container.scrollLeft + container.clientWidth < container.scrollWidth)
-      }
-    }
-
     checkScroll()
+
+    const observer = new MutationObserver(() => {
+      setTimeout(checkScroll, 10)
+    })
+
+    observer.observe(container, {
+      childList: true,
+      subtree: true,
+      attributes: true
+    })
+
+    const resizeObserver = new ResizeObserver(() => {
+      setTimeout(checkScroll, 10)
+    })
+
+    resizeObserver.observe(container)
 
     container.addEventListener('scroll', checkScroll)
     window.addEventListener('resize', checkScroll)
 
+    const timeoutId = setTimeout(checkScroll, 100)
+
     return () => {
+      observer.disconnect()
+      resizeObserver.disconnect()
       container.removeEventListener('scroll', checkScroll)
       window.removeEventListener('resize', checkScroll)
+      clearTimeout(timeoutId)
     }
-  }, [scrollRef, direction])
+  }, [scrollRef, direction, checkScroll])
 
   const handleClick = () => {
     const container = scrollRef.current
     if (container && canScroll) {
       const scrollAmount = container.firstChild instanceof HTMLElement ? container.firstChild.offsetWidth + 20 : 300
+
       container.scrollBy({
         left: direction === 'right' ? scrollAmount : -scrollAmount,
         behavior: 'smooth'
