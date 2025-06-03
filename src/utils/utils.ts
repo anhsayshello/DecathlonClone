@@ -35,4 +35,6 @@ export const getIdFromNameId = (nameId: string) => {
   return arr[1]
 }
 
-export const getURLAvatar = (avatarName: string) => (avatarName ? avatarName : avatarFallback)
+export const getURLAvatar = (avatarName?: string): string => {
+  return avatarName?.trim() || avatarFallback
+}

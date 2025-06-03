@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/vitest'
 import config from '../../src/constants/config'
-import { delay, http, HttpResponse } from 'msw'
+import { http, HttpResponse } from 'msw'
 
 const productsRes = {
   message: 'Lấy các sản phẩm thành công',

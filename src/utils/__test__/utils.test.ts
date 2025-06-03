@@ -77,8 +77,11 @@ describe('getURLAvatar', () => {
     expect(getURLAvatar('avatar.png')).toBe('avatar.png')
   })
 
-  it('should returns fallback avatar when avatarName is undefined', () => {
+  it('should return fallback avatar for various falsy values', () => {
     expect(getURLAvatar(undefined)).toBe(avatarFallback)
     expect(getURLAvatar()).toBe(avatarFallback)
+    expect(getURLAvatar('')).toBe(avatarFallback)
+    expect(getURLAvatar('   ')).toBe(avatarFallback)
+    expect(getURLAvatar('valid-avatar.jpg')).toBe('valid-avatar.jpg')
   })
 })

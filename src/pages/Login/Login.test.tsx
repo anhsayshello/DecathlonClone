@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router'
 import App from 'src/App'
 import path from 'src/constants/path'
 import { beforeEach } from 'vitest'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 describe('Login', () => {
   beforeEach(() => {
