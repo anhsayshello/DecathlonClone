@@ -6,7 +6,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   isPending?: boolean
   errorMessage?: boolean
 }
-export default function Button({ errorMessage, isPending, children, disabled, className, onClick }: Props) {
+export default function Button({ errorMessage, isPending, children, disabled, className, onClick, ...rest }: Props) {
   let newClassName = className || ''
   if (disabled || isPending) {
     newClassName += ' opacity-40'
@@ -21,6 +21,7 @@ export default function Button({ errorMessage, isPending, children, disabled, cl
       disabled={disabled}
       onClick={onClick}
       aria-label={typeof children === 'string' ? children : 'Button'}
+      {...rest}
     >
       {!isPending ? children : <Spinner />}
     </button>

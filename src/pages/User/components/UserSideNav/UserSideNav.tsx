@@ -18,8 +18,8 @@ export default function UserSideNav() {
           <div className='bg-blue px-[10px] mt-[10px] py-2 lg:py-5 flex items-center gap-3 text-white'>
             <div className='ml-4 w-10 h-10 rounded-full shrink-0 overflow-hidden relative'>
               <img
-                className='w-full h-full object-cover absolute'
-                src={getURLAvatar(profile?.avatar)}
+                className='w-full h-full object-cover absolute text-white'
+                src={getURLAvatar(profile?.avatar as string)}
                 alt={profile?._id}
               />
             </div>

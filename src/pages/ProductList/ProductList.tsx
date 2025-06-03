@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { motion } from 'motion/react'
 import { useRef } from 'react'
-import productApi from 'src/api/product.api'
+import productApi from 'src/apis/product.api'
 import Metadata from 'src/components/Metadata'
 import ProductCard from 'src/components/ProductCard'
 import useViewport from 'src/hooks/useViewport'

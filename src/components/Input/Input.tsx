@@ -34,7 +34,7 @@ export default function Input({ register, errorMessage, className, name, rules, 
               setIsShowPassword(!isShowPassword)
             }}
           >
-            {isShowPassword ? (
+            {!isShowPassword ? (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -70,7 +70,7 @@ export default function Input({ register, errorMessage, className, name, rules, 
         )}
       </div>
       {errorMessage && (
-        <div className='flex mt-1.5 -mb-1.5'>
+        <div className='flex mt-1.5 -mb-1.5' role='alert'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
-import authApi from 'src/api/auth.api'
+import authApi from 'src/apis/auth.api'
 import Button from 'src/components/Button'
 import { ChatbotInfo } from 'src/components/ChatbotAi/Components/ChatbotInfo/ChatbotInfo'
 import Input from 'src/components/Input'
@@ -89,6 +89,7 @@ export default function Login() {
               </div>
               <div className='mt-2'>
                 <Button
+                  data-testid='login-button'
                   isPending={loginMutation.isPending}
                   disabled={loginMutation.isPending}
                   errorMessage={Boolean(errors.email?.message || errors.password?.message)}
@@ -101,7 +102,11 @@ export default function Login() {
             <div className='mt-10'>
               <div className='font-semibold'>Bạn chưa có tài khoản Decathlon? Đăng ký ngay!</div>
               <div className='mt-3'>
-                <Link to={path.register} className='text-base font-light underline decoration-1 underline-offset-5'>
+                <Link
+                  to={path.register}
+                  aria-label='Tạo tài khoản'
+                  className='text-base font-light underline decoration-1 underline-offset-5'
+                >
                   Tạo tài khoản
                 </Link>
               </div>

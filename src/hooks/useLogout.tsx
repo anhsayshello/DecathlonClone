@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router'
-import authApi from 'src/api/auth.api'
+import authApi from 'src/apis/auth.api'
 import { purchaseStatus } from 'src/constants/purchase'
 import { useAuthenticatedStore } from 'src/stores/useAuthenticatedStore'
 import { useChatHistoryStore } from 'src/stores/useChatHistoryStore'

@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { useEffect, useMemo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import userApi from 'src/api/user.api'
+import userApi from 'src/apis/user.api'
 import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import InputFile from 'src/components/InputFile'
@@ -175,7 +175,7 @@ export default function Profile() {
               <div className='w-15 h-15 md:w-25 md:h-25 shrink-0 mt-5'>
                 <img
                   className='object-cover w-full h-full rounded-full'
-                  src={previewImage || getURLAvatar(profile?.avatar)}
+                  src={previewImage || getURLAvatar(profile?.avatar as string)}
                   alt='avatar'
                 />
               </div>

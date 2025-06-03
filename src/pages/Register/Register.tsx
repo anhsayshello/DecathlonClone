@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
-import authApi from 'src/api/auth.api'
+import authApi from 'src/apis/auth.api'
 import Button from 'src/components/Button'
 import { ChatbotInfo } from 'src/components/ChatbotAi/Components/ChatbotInfo/ChatbotInfo'
 import Input from 'src/components/Input'
@@ -92,11 +92,12 @@ export default function Register() {
                   errorMessage={errors.confirm_password?.message}
                   className='border inset-shadow-xs py-3 pl-3 pr-9 w-full hover:shadow-xs hover:outline-3 hover:outline-offset-0 hover:outline-[#ecedf8] '
                   type='password'
-                  placeholder='Password'
+                  placeholder='Confirm Password'
                 />
               </div>
               <div className='mt-2'>
                 <Button
+                  data-testid='register-button'
                   isPending={registerMutation.isPending}
                   disabled={registerMutation.isPending}
                   errorMessage={Boolean(

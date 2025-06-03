@@ -52,13 +52,12 @@ export default function useRouteElements() {
         {
           path: path.productSearch,
           element: <ProductSearch />
+        },
+        {
+          path: '*',
+          element: <NotFound />
         }
       ]
-    },
-
-    {
-      path: '*',
-      element: <NotFound />
     },
     {
       path: '',

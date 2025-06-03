@@ -1,5 +1,5 @@
 import axios, { AxiosError, HttpStatusCode } from 'axios'
-import avatarFb from 'src/assets/images/avt_fallback.svg'
+import avatarFallback from 'src/assets/images/avt_fallback.svg'
 
 export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
   return axios.isAxiosError(error)
@@ -27,7 +27,7 @@ export const removeSpecialCharacter = (str: string) =>
   str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, '')
 
 export const generateNameId = (name: string, id: string) => {
-  return removeSpecialCharacter(name).replace(/\s/g, '-') + `-i${id}`
+  return removeSpecialCharacter(name).replace(/\s+/g, '-') + `-i${id}`
 }
 
 export const getIdFromNameId = (nameId: string) => {
@@ -35,4 +35,4 @@ export const getIdFromNameId = (nameId: string) => {
   return arr[1]
 }
 
-export const getURLAvatar = (avatarName?: string) => (avatarName ? avatarName : avatarFb)
+export const getURLAvatar = (avatarName: string) => (avatarName ? avatarName : avatarFallback)

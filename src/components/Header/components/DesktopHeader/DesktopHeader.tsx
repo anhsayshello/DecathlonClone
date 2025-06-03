@@ -72,6 +72,7 @@ export default function DesktopHeader({ totalPurchases, isAuthenticated, profile
                   <Link
                     to={isAuthenticated ? path.user : path.login}
                     className='min-w-[65px] flex flex-col items-center gap-1.5 cursor-pointer relative'
+                    aria-label={isAuthenticated ? 'Tài khoản' : 'Đăng nhập'}
                   >
                     <svg
                       viewBox='0 0 24 24'

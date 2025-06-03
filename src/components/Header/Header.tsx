@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import purchaseApi from 'src/api/purchase.api'
+import purchaseApi from 'src/apis/purchase.api'
 import { purchaseStatus } from 'src/constants/purchase'
 import useViewport from 'src/hooks/useViewport'
 import { useAuthenticatedStore } from 'src/stores/useAuthenticatedStore'

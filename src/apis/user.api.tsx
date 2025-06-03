@@ -8,10 +8,10 @@ interface BodyUpdateUser extends Omit<User, '_id' | 'roles' | 'email' | 'created
 }
 
 const userApi = {
-  getProfile: () => http.get<SuccessResponse<User>>('/user'),
-  updateProfile: (body: BodyUpdateUser) => http.put<SuccessResponse<User>>('/user', body),
+  getProfile: () => http.get<SuccessResponse<User>>('me'),
+  updateProfile: (body: BodyUpdateUser) => http.put<SuccessResponse<User>>('user', body),
   updateAvatar: (body: FormData) =>
-    http.post<SuccessResponse<string>>('/user/upload-avatar', body, {
+    http.post<SuccessResponse<string>>('user/upload-avatar', body, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
 }

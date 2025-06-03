@@ -1,19 +1,19 @@
 import axios, { AxiosInstance, HttpStatusCode } from 'axios'
 import { toast } from 'react-toastify'
+import { URL_LOGIN, URL_LOGOUT, URL_REGISTER } from 'src/apis/auth.api'
 import config from 'src/constants/config'
-import path from 'src/constants/path'
 import { AuthResponse } from 'src/types/auth.type'
 
-import { clearLS, getAcessTokenFromLS, setAccessTokenToLS, setProfileToLS } from './auth'
+import { clearLS, getAccessTokenFromLS, setAccessTokenToLS, setProfileToLS } from './auth'
 
 class Http {
   instance: AxiosInstance
   private access_token: string
   constructor() {
-    this.access_token = getAcessTokenFromLS()
+    this.access_token = getAccessTokenFromLS()
     this.instance = axios.create({
       baseURL: config.baseUrl,
-      timeout: 100000,
+      timeout: 10000,
       headers: {
         'Content-Type': 'application/json'
       }
@@ -33,13 +33,13 @@ class Http {
     this.instance.interceptors.response.use(
       (response) => {
         const { url } = response.config
-        if (url === path.login || url === path.register) {
+        if (url === URL_LOGIN || url === URL_REGISTER) {
           const data = response.data as AuthResponse
           this.access_token = data.data.access_token
           setAccessTokenToLS(this.access_token)
           setProfileToLS(data.data.user)
         }
-        if (url === path.logout) {
+        if (url === URL_LOGOUT) {
           this.access_token = ''
           clearLS()
         }

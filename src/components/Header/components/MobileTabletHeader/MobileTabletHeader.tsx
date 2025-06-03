@@ -38,7 +38,7 @@ export default function MobileTabletHeader({ totalPurchases, isAuthenticated }: 
   }
 
   return (
-    <div id='mobileHeader'>
+    <div id='mobileTabletHeader'>
       <div className='bg-white shadow-sm px-4 py-3.5 md:pl-14 md:pr-10 fixed top-0 w-full z-25'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center md:flex-2'>

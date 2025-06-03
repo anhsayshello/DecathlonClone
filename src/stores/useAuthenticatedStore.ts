@@ -1,4 +1,4 @@
-import { getAcessTokenFromLS } from 'src/utils/auth'
+import { getAccessTokenFromLS } from 'src/utils/auth'
 import { create } from 'zustand'
 
 type AuthenticatedStore = {
@@ -6,5 +6,5 @@ type AuthenticatedStore = {
 }
 
 export const useAuthenticatedStore = create<AuthenticatedStore>(() => ({
-  isAuthenticated: Boolean(getAcessTokenFromLS())
+  isAuthenticated: Boolean(getAccessTokenFromLS())
 }))
