@@ -27,6 +27,7 @@ export default function Input({ register, errorMessage, className, name, rules, 
         <input className={newClassName} type={handleType()} {...registerSchema} {...rest} />
         {type === 'password' && (
           <button
+            type='button'
             aria-label={isShowPassword ? 'show' : '!show'}
             className='cursor-pointer p-1 bg-transparent absolute right-3 top-1/2 -translate-y-1/2'
             onClick={(e) => {
@@ -34,7 +35,7 @@ export default function Input({ register, errorMessage, className, name, rules, 
               setIsShowPassword(!isShowPassword)
             }}
           >
-            {!isShowPassword ? (
+            {isShowPassword ? (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'

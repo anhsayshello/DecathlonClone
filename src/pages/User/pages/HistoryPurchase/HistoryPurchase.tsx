@@ -77,7 +77,7 @@ export default function HisrotyPurchase() {
   return (
     <div>
       <Metadata title='Lịch sử mua hàng' content='Xem lại các đơn hàng đã đặt và chi tiết giao dịch.' />
-      <div className='h-screen lg:h-160 overflow-y-scroll'>
+      <div className='h-screen lg:h-160 overflow-y-scroll flex flex-col'>
         <div className='bg-white/98.5 pl-5 pr-4 md:pl-15 md:pr-10 lg:pl-0 lg:mr-4 pt-3 lg:pt-7 pb-3 sticky top-0 border-b-[0.1px] border-gray-200'>
           <div className='flex items-center gap-3 xs:gap-4 md:gap-6'>
             <div className='capitalize xs:text-lg md:text-xl text-md font-semibold'>Lịch sử mua hàng</div>
@@ -100,14 +100,11 @@ export default function HisrotyPurchase() {
             </Select.Root>
           </div>
         </div>
-        <div className='mt-3 pl-4 md:pl-15 md:pr-10 lg:pl-0 lg:pr-4'>
-          {historyPurchaseData &&
-            historyPurchaseData.map((purchase) => {
-              return (
-                <div
-                  className='py-4 px-4 md:px-6 bg-white border-x border-[#00537d1a] shadow-md shadow-[#00537d1a] mb-4'
-                  key={purchase._id}
-                >
+        {historyPurchaseData &&
+          historyPurchaseData.map((purchase) => {
+            return (
+              <div key={purchase._id} className='mt-3 pl-4 md:pl-15 md:pr-10 lg:pl-0 lg:pr-4'>
+                <div className='py-4 px-4 md:px-6 bg-white border-x border-[#00537d1a] shadow-md shadow-[#00537d1a] mb-4'>
                   <div className='flex gap-4 justify-between'>
                     <div className='flex'>
                       <img
@@ -141,18 +138,18 @@ export default function HisrotyPurchase() {
                     <div className='ml-2 text-orange'>{formatCurrency(purchase.price * purchase.buy_count)}&nbsp;₫</div>
                   </div>
                 </div>
-              )
-            })}
-        </div>
+              </div>
+            )
+          })}
         {isPending && (
-          <div className='w-full mt-40 md:mt-30 flex items-center justify-center'>
+          <div className='grow mb-10 flex items-center justify-center'>
             <Spinner />
           </div>
         )}
         {!isPending && historyPurchaseData?.length === 0 && (
-          <div className='mt-20 md:mt-16 lg:mt-12 flex flex-col items-center justify-center gap-10'>
+          <div className='mb-10 grow flex flex-col items-center justify-center gap-10'>
             <div className='text-lg font-bold'>Chưa có đơn hàng</div>
-            <div className='flex justify-center items-center w-full h-full'>
+            <div className=''>
               <img
                 className='w-[287px] aspect-287/200 md:w-[399px] md:aspect-399/300 lg:w-[443px] lg:aspect-443/340 object-contain'
                 src='https://contents.mediadecathlon.com/s1069005/k$adcac81ed2e6e39ceacac52937f221c3/apacc%20vp%20woman%20mat.png?format=auto'

@@ -59,8 +59,8 @@ export default function Login() {
   return (
     <>
       <Metadata title='Đăng nhập' content='Đăng nhập vào tài khoản của bạn để mua hàng và quản lý đơn hàng.' />
-      <div className='my-8 px-10 xl:px-0 xl:overflow-y-scroll xl:max-h-[560px]'>
-        <div className='max-w-[500px] h-screen xl:h-full mx-auto flex flex-col justify-between'>
+      <div className='px-5 sm:px-10 xl:px-0 xl:overflow-y-scroll flex h-full'>
+        <div className='max-w-[500px] xl:h-full mx-auto grow flex flex-col justify-between'>
           <div>
             <div className='text-[26px] font-medium'>Đăng nhập</div>
             <div className='mt-7 mb-2.5'>Nhập địa chỉ email</div>
@@ -71,7 +71,7 @@ export default function Login() {
                   register={register}
                   type='email'
                   name='email'
-                  placeholder='Email'
+                  placeholder='name@example.com'
                   autoComplete='on'
                   errorMessage={errors.email?.message}
                 />
@@ -127,13 +127,11 @@ export default function Login() {
               </div>
             </div>
           </div>
-          <div>
-            <div className='mt-8'>
-              <div className='flex items-center'>
-                <div className='mr-5'>Hỗ trợ</div>
-                <div className='mr-5'>Bảo mật</div>
-                <div className='mr-5'>Thông tin</div>
-              </div>
+          <div className='xl:mt-10 xl:mb-16'>
+            <div className='flex items-center'>
+              <div className='mr-5'>Hỗ trợ</div>
+              <div className='mr-5'>Bảo mật</div>
+              <div className='mr-5'>Thông tin</div>
             </div>
             <div className='my-5'>
               <div className='flex items-center'>

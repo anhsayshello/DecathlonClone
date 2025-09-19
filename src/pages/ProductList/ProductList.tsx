@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { motion } from 'motion/react'
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import productApi from 'src/apis/product.api'
 import Metadata from 'src/components/Metadata'
 import ProductCard from 'src/components/ProductCard'
@@ -12,13 +12,39 @@ import Carousel from './components/CarouselBanner'
 
 export default function ProductList() {
   const viewport = useViewport()
-  const { data: dataProduct } = useQuery({
+  const { data } = useQuery({
     queryKey: ['products'],
     queryFn: () => productApi.getProducts({ limit: 45 } as ProductQueryParams),
     staleTime: 3 * 60 * 1000
   })
-
-  console.log(dataProduct)
+  const dataProducts = useMemo(() => data?.data?.data?.products ?? [], [data])
+  const variants = {
+    fadeInUp: {
+      hidden: { opacity: 0, y: 20 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.3, ease: 'easeOut' }
+      }
+    },
+    stagger: {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.1,
+          delayChildren: 0.1
+        }
+      }
+    },
+    button: {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: { duration: 0.3, ease: 'easeOut', delay: 1.2 }
+      }
+    }
+  }
 
   const scrollRef1 = useRef<HTMLDivElement>(null)
   const scrollRef2 = useRef<HTMLDivElement>(null)
@@ -28,18 +54,20 @@ export default function ProductList() {
       <Metadata title='Decathlon Clone' content='Khám phá các sản phẩm theo danh mục mà bạn yêu thích.' />
       <div className='container'>
         <motion.div
-          initial={{ y: '25%', opacity: 0.1 }}
-          animate={{ y: '0%', opacity: 1 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
+          initial={{ y: 25, opacity: 0.1 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <Carousel />
         </motion.div>
         <div>
           <motion.div
             className='mt-4'
-            initial={{ y: '40%', opacity: 0.2 }}
-            animate={{ y: '0%', opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
+            variants={variants.fadeInUp}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.2 }}
           >
             <div className='text-lg font-bold mx-6 lg:mx-10 xl:mx-20'>Bộ sưu tập HOT</div>
             <div className='mt-4 ml-6 lg:ml-10 xl:mx-20 flex gap-4 sm:gap-7 md:gap-10 overflow-x-auto scrollbar-none scroll-smooth touch-pan-x touch-pan-y'>
@@ -97,6 +125,7 @@ export default function ProductList() {
                   <div className='w-[60px] h-[60px] md:w-[72px] md:h-[72px] relative rounded-full overflow-hidden shrink-0'>
                     <img
                       className='absolute top-0 right-0 w-full h-full object-cover'
+                      loading='lazy'
                       src={item.src}
                       alt={item.label.toLowerCase().replace(/\s+/g, '-')}
                     />
@@ -112,15 +141,21 @@ export default function ProductList() {
         <div>
           <motion.div
             className='mt-6 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20 relative'
-            initial={{ y: '20%', opacity: 0.2 }}
-            animate={{ y: '0%', opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
+            variants={variants.fadeInUp}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.2 }}
           >
             {viewport.desktop && (
-              <div>
+              <motion.div
+                variants={variants.button}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
+              >
                 <ScrollButton scrollRef={scrollRef1 as React.RefObject<HTMLDivElement>} direction='left' />
                 <ScrollButton scrollRef={scrollRef1 as React.RefObject<HTMLDivElement>} direction='right' />
-              </div>
+              </motion.div>
             )}
             <div className='font-semibold text-lg lg:text-xl mb-1'>Sản phẩm bán chạy nhất</div>
 
@@ -128,18 +163,19 @@ export default function ProductList() {
               ref={scrollRef1}
               className='flex items-center gap-4 lg:gap-5 overflow-x-scroll scrollbar-none scroll-smooth touch-pan-x touch-pan-y'
             >
-              {dataProduct?.data.data.products
-                .slice(0, 15)
-                .map((product) => <ProductCard key={product._id} product={product} />)}
+              {dataProducts.slice(0, 15).map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
             </div>
           </motion.div>
         </div>
         <div>
           <motion.div
+            variants={variants.fadeInUp}
+            initial='hidden'
+            whileInView='visible'
+            viewport={{ once: true, amount: 0.2 }}
             className='mt-3 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20'
-            initial={{ y: '20%', opacity: 0.2 }}
-            animate={{ y: '0%', opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
           >
             <div className='font-semibold text-lg lg:text-xl mb-3'>Môn thể thao phổ biến</div>
             <div className='flex items-center justify-between gap-4 lg:gap-5 overflow-x-scroll scrollbar-none scroll-smooth touch-pan-x touch-pan-y'>
@@ -181,22 +217,33 @@ export default function ProductList() {
                 }
               ].map((item, index) => (
                 <div key={index} className='flex flex-col items-center gap-2'>
-                  <div className='relative w-30 md:w-[170px] aspect-120/120 md:aspect-170/170 shrink-0'>
-                    <img className='w-full h-full object-cover absolute' src={item.src} alt={item.alt} />
+                  <div className='relative w-30 md:w-[170px] aspect-square shrink-0'>
+                    <img loading='lazy' className='w-full h-full object-cover absolute' src={item.src} alt={item.alt} />
                   </div>
+
                   <div className='text-sm font-medium'>{item.label}</div>
                 </div>
               ))}
             </div>
           </motion.div>
         </div>
-        <div>
+        <motion.div
+          variants={variants.fadeInUp}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.2 }}
+        >
           <div className='mt-6 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20 relative'>
             {viewport.desktop && (
-              <div>
+              <motion.div
+                variants={variants.button}
+                initial='hidden'
+                whileInView='visible'
+                viewport={{ once: true, amount: 0.2 }}
+              >
                 <ScrollButton scrollRef={scrollRef2 as React.RefObject<HTMLDivElement>} direction='left' />
                 <ScrollButton scrollRef={scrollRef2 as React.RefObject<HTMLDivElement>} direction='right' />
-              </div>
+              </motion.div>
             )}
 
             <div className='font-semibold text-lg lg:text-xl mb-1'>Quẩn áo sale tới 50%</div>
@@ -205,17 +252,18 @@ export default function ProductList() {
               ref={scrollRef2}
               className='flex items-center gap-4 lg:gap-5 overflow-x-scroll scrollbar-none scroll-smooth touch-pan-x touch-pan-y'
             >
-              {dataProduct?.data.data.products
-                .slice(16, 30)
-                .map((product) => <ProductCard key={product._id} product={product} />)}
+              {dataProducts.slice(16, 30).map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
             </div>
           </div>
-        </div>
+        </motion.div>
         <motion.div
+          variants={variants.fadeInUp}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.2 }}
           className='mt-3 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20'
-          initial={{ y: '20%', opacity: 0.2 }}
-          animate={{ y: '0%', opacity: 1 }}
-          transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
         >
           <div className='font-semibold text-lg lg:text-xl mb-1'>Chuẩn bị cho kì nghỉ lễ</div>
           <div className='flex items-center justify-between gap-3 md:gap-6 overflow-x-scroll scrollbar-none scroll-smooth touch-pan-x touch-pan-y'>
@@ -225,18 +273,23 @@ export default function ProductList() {
               'https://contents.mediadecathlon.com/s1212735/k$6bcf7802e8f4ec14b82987b62fbbdf82/kids-shoe-small-web-4.webp'
             ].map((src, idx) => (
               <div key={idx} className='grow h-50 lg:h-[230px] xl:h-[240px] 3xl:h-[320px] aspect-43/23 relative'>
-                <img src={src} alt={`camp-small-${idx + 1}`} className='w-full h-full object-cover absolute' />
+                <img
+                  src={src}
+                  loading='lazy'
+                  alt={`camp-small-${idx + 1}`}
+                  className='w-full h-full object-cover absolute'
+                />
               </div>
             ))}
           </div>
         </motion.div>
-        <div>
-          <motion.div
-            className='mt-6 mb-3 pb-6 ml-6 lg:my-6 lg:mx-10 xl:mx-20 relative'
-            initial={{ y: '20%', opacity: 0.2 }}
-            animate={{ y: '0%', opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
-          >
+        <motion.div
+          variants={variants.fadeInUp}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className='mt-6 mb-3 pb-6 ml-6 lg:my-6 lg:mx-10 xl:mx-20 relative'>
             {viewport.desktop && (
               <div>
                 <ScrollButton scrollRef={scrollRef3 as React.RefObject<HTMLDivElement>} direction='left' />
@@ -250,12 +303,12 @@ export default function ProductList() {
               ref={scrollRef3}
               className='flex items-center gap-4 lg:gap-5 overflow-x-scroll scrollbar-none scroll-smooth touch-pan-x touch-pan-y'
             >
-              {dataProduct?.data.data.products
-                .slice(31, 45)
-                .map((product) => <ProductCard key={product._id} product={product} />)}
+              {dataProducts.slice(31, 45).map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </>
   )

@@ -188,14 +188,14 @@ export default function Footer() {
               <div className='flex flex-1 flex-col grow shrink-0 max-w-[200px]'>
                 <div className='text-[13px] md:text-[15px] font-bold mb-4 '>Tải ứng dụng Decathlon</div>
                 <div className='flex gap-3'>
-                  <div className='relative aspect-square w-[95px] h-[28px]'>
+                  <div className='relative w-[95px] h-[28px]'>
                     <img
                       className='absolute h-full w-full inset-0 text-transparent cursor-pointer'
                       src='https://contents.mediadecathlon.com/s1012444/k$f9cd9f79c6b583f1c842884359c0843e/app%20store%20button%20tr.svg?format=auto'
                       alt='appstore'
                     />
                   </div>
-                  <div className='relative aspect-square w-[95px] h-[28px]'>
+                  <div className='relative w-[95px] h-[28px]'>
                     <img
                       className='absolute h-full w-full inset-0 text-transparent cursor-pointer'
                       src='https://contents.mediadecathlon.com/s815544/k$f30b23aeb9d31e68b3c76fa12cf5ab82/google%20play%20badge.png?format=auto'
@@ -205,7 +205,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className='flex flex-1 max-w-[200px]'>
-                <div className='relative aspect-square w-[200px] h-[76px] mt-3'>
+                <div className='relative w-[200px] h-[76px] mt-3'>
                   <img
                     className='absolute h-full w-full inset-0 text-transparent cursor-pointer'
                     src='https://contents.mediadecathlon.com/s1061142/k$def668b51d6ea5f5f2790c4ae1faf657/notified%20web.png'
@@ -287,14 +287,14 @@ export default function Footer() {
               <div className='flex flex-1 flex-col grow shrink-0 max-w-[300px]'>
                 <div className='font-bold mb-5.5'>Tải ứng dụng Decathlon</div>
                 <div className='flex gap-3'>
-                  <div className='relative aspect-square w-[132px] h-[39px]'>
+                  <div className='relative w-[132px] h-[39px]'>
                     <img
                       className='absolute h-full w-full inset-0 text-transparent cursor-pointer'
                       src='https://contents.mediadecathlon.com/s1012444/k$f9cd9f79c6b583f1c842884359c0843e/app%20store%20button%20tr.svg?format=auto'
                       alt='appstore'
                     />
                   </div>
-                  <div className='relative aspect-square w-[132px] h-[39px]'>
+                  <div className='relative w-[132px] h-[39px]'>
                     <img
                       className='absolute h-full w-full inset-0 text-transparent cursor-pointer'
                       src='https://contents.mediadecathlon.com/s815544/k$f30b23aeb9d31e68b3c76fa12cf5ab82/google%20play%20badge.png?format=auto'
@@ -304,7 +304,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className='flex flex-1 max-w-[300px]'>
-                <div className='relative aspect-square w-[273px] h-[103px] mt-3'>
+                <div className='relative w-[273px] h-[103px] mt-3'>
                   <img
                     className='absolute h-full w-full inset-0 text-transparent cursor-pointer'
                     src='https://contents.mediadecathlon.com/s1061142/k$def668b51d6ea5f5f2790c4ae1faf657/notified%20web.png'

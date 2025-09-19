@@ -17,7 +17,7 @@ export default function ProductCard({ product }: Props) {
     <div className='w-[185px] lg:w-[237px] flex flex-col shrink-0 pb-3'>
       <div className='relative'>
         <Link to={`${path.home}${generateNameId(product.name, product._id)}`}>
-          <div className='aspect-185/185 lg:aspect-237/237 w-full relative'>
+          <div className='aspect-square w-full relative'>
             <img className='w-full h-full absolute object-cover' src={product.image as string} alt={product.name} />
             {product.sold > 100 ? (
               <div className='bg-[#ffcd4e] px-2 py-[2px] text-[10px] font-bold absolute top-0 left-0 uppercase'>

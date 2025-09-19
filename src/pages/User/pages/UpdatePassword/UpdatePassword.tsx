@@ -59,7 +59,7 @@ export default function UpdatePassword() {
           <div className='my-4 w-full h-[0.1px] bg-gray-200 pr-4'></div>
         </div>
         <form className='mt-2 md:mt-8' onSubmit={handleSubmit(handleUpdateProfile)}>
-          <div className='text-sm pr-2 md:pr-12 lg:pr-0 grow flex flex-col justify-center gap-3.5 md:gap-5 xl:ml-12'>
+          <div className='text-sm xs:pr-2 md:pr-12 lg:pr-0 grow flex flex-col justify-center gap-3.5 md:gap-5 xl:ml-12'>
             <div className='mb-1 mt-3 flex flex-col xs:flex-row w-[90%] md:w-xl lg:w-lg xl:w-xl ml-3 xs:ml-6 md:ml-10 lg:ml-6'>
               <div className='xs:w-[25%] md:text-right text-[15px] mr-5 pt-0 pb-2 md:pb-0 md:pt-3'>
                 Mật khẩu hiện tại
