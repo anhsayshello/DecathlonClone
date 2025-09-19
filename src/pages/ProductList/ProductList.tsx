@@ -41,7 +41,7 @@ export default function ProductList() {
       hidden: { opacity: 0 },
       visible: {
         opacity: 1,
-        transition: { duration: 0.3, ease: 'easeOut', delay: 1.2 }
+        transition: { duration: 0.3, ease: 'easeOut', delay: 0.8 }
       }
     }
   }
