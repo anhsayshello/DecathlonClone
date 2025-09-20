@@ -6,6 +6,10 @@ import { BrowserRouter } from 'react-router'
 
 import App from './App'
 
+if (process.env.NODE_ENV === 'production') {
+  console.log = () => {}
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
