@@ -57,7 +57,7 @@ export default function ProductList() {
           initial={{ y: 25, opacity: 0.1 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <Carousel />
         </motion.div>
@@ -67,7 +67,7 @@ export default function ProductList() {
             variants={variants.fadeInUp}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <div className='text-lg font-bold mx-6 lg:mx-10 xl:mx-20'>Bộ sưu tập HOT</div>
             <div className='mt-4 ml-6 lg:ml-10 xl:mx-20 flex gap-4 sm:gap-7 md:gap-10 overflow-x-auto scrollbar-none scroll-smooth touch-pan-x touch-pan-y'>
@@ -144,14 +144,14 @@ export default function ProductList() {
             variants={variants.fadeInUp}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             {viewport.desktop && (
               <motion.div
                 variants={variants.button}
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.1 }}
               >
                 <ScrollButton scrollRef={scrollRef1 as React.RefObject<HTMLDivElement>} direction='left' />
                 <ScrollButton scrollRef={scrollRef1 as React.RefObject<HTMLDivElement>} direction='right' />
@@ -174,7 +174,7 @@ export default function ProductList() {
             variants={variants.fadeInUp}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             className='mt-3 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20'
           >
             <div className='font-semibold text-lg lg:text-xl mb-3'>Môn thể thao phổ biến</div>
@@ -231,7 +231,7 @@ export default function ProductList() {
           variants={variants.fadeInUp}
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <div className='mt-6 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20 relative'>
             {viewport.desktop && (
@@ -239,7 +239,7 @@ export default function ProductList() {
                 variants={variants.button}
                 initial='hidden'
                 whileInView='visible'
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.1 }}
               >
                 <ScrollButton scrollRef={scrollRef2 as React.RefObject<HTMLDivElement>} direction='left' />
                 <ScrollButton scrollRef={scrollRef2 as React.RefObject<HTMLDivElement>} direction='right' />
@@ -262,7 +262,7 @@ export default function ProductList() {
           variants={variants.fadeInUp}
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
           className='mt-3 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20'
         >
           <div className='font-semibold text-lg lg:text-xl mb-1'>Chuẩn bị cho kì nghỉ lễ</div>
@@ -287,7 +287,7 @@ export default function ProductList() {
           variants={variants.fadeInUp}
           initial='hidden'
           whileInView='visible'
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <div className='mt-6 mb-3 pb-6 ml-6 lg:my-6 lg:mx-10 xl:mx-20 relative'>
             {viewport.desktop && (
