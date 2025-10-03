@@ -51,7 +51,7 @@ export default function ProductList() {
   const scrollRef3 = useRef<HTMLDivElement>(null)
   return (
     <>
-      <Metadata title='Decathlon Clone' content='Khám phá các sản phẩm theo danh mục mà bạn yêu thích.' />
+      <Metadata title='Decathlon' content='Khám phá các sản phẩm theo danh mục mà bạn yêu thích.' />
       <div className='container'>
         <motion.div
           initial={{ y: 25, opacity: 0.1 }}
