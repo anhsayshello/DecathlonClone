@@ -33,9 +33,16 @@
   --breakpoint-3xl: 120rem;
 }
 
+:root {
+  color-scheme: light !important;
+  forced-color-adjust: none !important;
+}
+
 html {
   height: 100%;
   line-height: 1.2;
+  background: #fff;
+  color: #000;
 }
 
 body {
