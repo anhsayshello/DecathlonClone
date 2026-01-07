@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { ToastContainer } from 'react-toastify'
 
-import ChabotAi from './components/ChatbotAi'
 import ErrorBoundary from './components/ErrorBoundary'
 import PageLoader from './components/PageLoader'
 import Popup from './components/Popup'
@@ -55,11 +54,6 @@ function App() {
               </TimeOut>,
               document.body
             )}
-          {isAuthenticated && (
-            <TimeOut delay={1500}>
-              <ChabotAi />
-            </TimeOut>
-          )}
           <PageLoader />
         </>
       </ErrorBoundary>
