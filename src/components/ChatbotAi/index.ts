@@ -1,3 +1,3 @@
-import ChabotAi from './ChatbotAi'
+// import ChabotAi from './ChatbotAi'
 
-export default ChabotAi
+// export default ChabotAi
