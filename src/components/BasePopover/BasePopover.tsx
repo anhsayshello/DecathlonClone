@@ -44,7 +44,12 @@ export default function BasePopover({
     }
   }
   return (
-    <Dialog.Root modal={modal} open={open || openPopover} onOpenChange={handleOpenChange} dismissible={dismissible}>
+    <Dialog.Root
+      modal={modal}
+      open={open || openPopover}
+      onOpenChange={handleOpenChange}
+      disablePointerDismissal={dismissible}
+    >
       {trigger && <Dialog.Trigger render={trigger} />}
       {isBackdrop && (
         <Dialog.Backdrop
