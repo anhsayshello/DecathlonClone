@@ -2,7 +2,7 @@ import { Dialog } from '@base-ui-components/react/dialog'
 
 export default function Popup() {
   return (
-    <Dialog.Root defaultOpen={true} dismissible={false}>
+    <Dialog.Root defaultOpen={true} disablePointerDismissal={false}>
       <Dialog.Portal>
         <Dialog.Backdrop className='fixed inset-0 z-100 bg-black opacity-60 transition-all duration-250 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 dark:opacity-70' />
         <Dialog.Popup
