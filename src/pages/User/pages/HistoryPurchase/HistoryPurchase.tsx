@@ -84,7 +84,7 @@ export default function HisrotyPurchase() {
             <div className='capitalize xs:text-lg md:text-xl text-md font-semibold'>Lịch sử mua hàng</div>
             <Select.Root defaultValue='Tất cả'>
               <Select.Trigger className='flex h-8 w-37 gap-2 px-3 xs:h-9 md:h-10 md:min-w-42 items-center justify-between  border border-gray-200 text-sm md:text-base text-gray-900 select-none hover:bg-gray-100 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-blue-800 active:bg-gray-100 data-[popup-open]:bg-gray-100'>
-                <Select.Value placeholder='Tất cả' />
+                <Select.Value>{(value) => value || 'Tất cả'}</Select.Value>
                 <Select.Icon className='flex'>
                   <ChevronUpDownIcon />
                 </Select.Icon>
