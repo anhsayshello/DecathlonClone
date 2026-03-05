@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { motion } from 'motion/react'
+import { motion, type Variants } from 'motion/react'
 import { useMemo, useRef } from 'react'
 import productApi from 'src/apis/product.api'
 import Metadata from 'src/components/Metadata'
@@ -69,7 +69,7 @@ export default function ProductList() {
             <div>
               <motion.div
                 className='mt-4'
-                variants={variants.fadeInUp}
+                variants={variants.fadeInUp as Variants}
                 initial='hidden'
                 whileInView='visible'
                 viewport={{ once: true, amount: 0.1 }}
@@ -146,14 +146,14 @@ export default function ProductList() {
             <div>
               <motion.div
                 className='mt-6 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20 relative'
-                variants={variants.fadeInUp}
+                variants={variants.fadeInUp as Variants}
                 initial='hidden'
                 whileInView='visible'
                 viewport={{ once: true, amount: 0.1 }}
               >
                 {viewport.desktop && (
                   <motion.div
-                    variants={variants.button}
+                    variants={variants.button as Variants}
                     initial='hidden'
                     whileInView='visible'
                     viewport={{ once: true, amount: 0.1 }}
@@ -176,7 +176,7 @@ export default function ProductList() {
             </div>
             <div>
               <motion.div
-                variants={variants.fadeInUp}
+                variants={variants.fadeInUp as Variants}
                 initial='hidden'
                 whileInView='visible'
                 viewport={{ once: true, amount: 0.1 }}
@@ -238,7 +238,7 @@ export default function ProductList() {
               </motion.div>
             </div>
             <motion.div
-              variants={variants.fadeInUp}
+              variants={variants.fadeInUp as Variants}
               initial='hidden'
               whileInView='visible'
               viewport={{ once: true, amount: 0.1 }}
@@ -246,7 +246,7 @@ export default function ProductList() {
               <div className='mt-6 mb-3 ml-6 lg:my-6 lg:mx-10 xl:mx-20 relative'>
                 {viewport.desktop && (
                   <motion.div
-                    variants={variants.button}
+                    variants={variants.button as Variants}
                     initial='hidden'
                     whileInView='visible'
                     viewport={{ once: true, amount: 0.1 }}
@@ -269,7 +269,7 @@ export default function ProductList() {
               </div>
             </motion.div>
             <motion.div
-              variants={variants.fadeInUp}
+              variants={variants.fadeInUp as Variants}
               initial='hidden'
               whileInView='visible'
               viewport={{ once: true, amount: 0.1 }}
@@ -294,7 +294,7 @@ export default function ProductList() {
               </div>
             </motion.div>
             <motion.div
-              variants={variants.fadeInUp}
+              variants={variants.fadeInUp as Variants}
               initial='hidden'
               whileInView='visible'
               viewport={{ once: true, amount: 0.1 }}
