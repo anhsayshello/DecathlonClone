@@ -61,13 +61,10 @@ export default function DesktopHeader({ totalPurchases, isAuthenticated, profile
             </form>
           </div>
           <div className='basic-[30%] shrink-0 flex justify-around gap-2 pt-0.5'>
-            <Popover.Root
-              open={open}
-              onOpenChange={(open) => (isAuthenticated ? setOpen(open) : setOpen(false))}
-              openOnHover={true}
-              delay={0}
-            >
+            <Popover.Root open={open} onOpenChange={(open) => (isAuthenticated ? setOpen(open) : setOpen(false))}>
               <Popover.Trigger
+                openOnHover
+                delay={0}
                 render={
                   <Link
                     to={isAuthenticated ? path.user : path.login}
